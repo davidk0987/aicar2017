@@ -1,0 +1,34 @@
+﻿<local:BasePage x:Class="AiCar.Pages.Page_km3_menu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AiCar.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page_km3_menu" Loaded="BasePage_Loaded">
+
+    <Grid Background="#FF2C2E32" Margin="0,0,0,0">
+        <Canvas Height="55" VerticalAlignment="Top" >
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Images/bar_deviceinfo.png" TileMode="Tile"  Viewport="0,0,1,1"/>
+            </Canvas.Background>
+            <Image Tag="image_home" Height="55" Width="56"  Source="/images/goback.png"  VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="6" MouseLeftButtonUp="Menu_Click"/>
+            <Label x:Name="lab_datetime" Content="2019年01月10日 13：54：34   星期一" VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="10"  Width="314" FontSize="14" Foreground="#8e908f" Background="{x:Null}" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Right="5"/>
+
+        </Canvas>
+
+        <Canvas x:Name="canvas_gpsinfo" VerticalAlignment="Top" Margin="0,50,0,66" Visibility="Visible">
+            <Label Content="---选择任意一条线路进行训练----------------------" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Canvas.Top="18"  Width="410" FontSize="16" Foreground="#8e908f" Background="{x:Null}" Height="37" Canvas.Left="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        </Canvas>
+
+        <WrapPanel  x:Name="wrapPanel_menu" Orientation="Horizontal" Margin="25,129,0,66" />
+        <!--Canvas  VerticalAlignment="Bottom" Margin="0,0,0,5" Visibility="Visible" Height="66" Background="#FF212121"/-->
+
+        <StackPanel Height="46" Margin="0,0,0,0" Orientation="Horizontal" VerticalAlignment="Bottom" Background="#FF292A2E">
+            <Image Width="43" Source="/images/communication.png" Margin="20,8,0,7" />
+            <Label x:Name="system_messageinfo" FontSize="16" Content="" Foreground="#e6e6e6" Margin="20,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        </StackPanel>
+    </Grid>
+</local:BasePage>

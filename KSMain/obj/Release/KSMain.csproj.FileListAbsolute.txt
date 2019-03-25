@@ -1,0 +1,7 @@
+E:\QHBackup\CloudStation\RB\Source\Confidential\主机引导程序\KSMain\KSMain\bin\Release\KSMain.exe.config
+E:\QHBackup\CloudStation\RB\Source\Confidential\主机引导程序\KSMain\KSMain\bin\Release\KSMain.exe
+E:\QHBackup\CloudStation\RB\Source\Confidential\主机引导程序\KSMain\KSMain\bin\Release\KSMain.pdb
+E:\QHBackup\CloudStation\RB\Source\Confidential\主机引导程序\KSMain\KSMain\obj\Release\KSMain.csprojAssemblyReference.cache
+E:\QHBackup\CloudStation\RB\Source\Confidential\主机引导程序\KSMain\KSMain\obj\Release\KSMain.csproj.CoreCompileInputs.cache
+E:\QHBackup\CloudStation\RB\Source\Confidential\主机引导程序\KSMain\KSMain\obj\Release\KSMain.exe
+E:\QHBackup\CloudStation\RB\Source\Confidential\主机引导程序\KSMain\KSMain\obj\Release\KSMain.pdb

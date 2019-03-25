@@ -1,0 +1,660 @@
+﻿<local:BasePage
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AiCar.Pages"
+      xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="AiCar.Pages.Page_Setting"
+      mc:Ignorable="d" 
+      d:DesignHeight="859.914" d:DesignWidth="823.276"
+      Title="Page_Setting" Loaded="BasePage_Loaded">
+
+    <local:BasePage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/ComboBox.xaml" />
+                <ResourceDictionary Source="/Themes/CheckBox.xaml" />
+                <ResourceDictionary Source="/Themes/textbox.xaml" />
+                <ResourceDictionary Source="/Themes/BulletCheckBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:BasePage.Resources>
+
+    <Grid Background="#FF2C2E32" Margin="0,0,0,0">
+        <Canvas Height="55" VerticalAlignment="Top" >
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Images/bar_deviceinfo.png" TileMode="Tile"  Viewport="0,0,1,1"/>
+            </Canvas.Background>
+            <Image Tag="image_home" Height="55" Width="56"  Source="/images/goback.png" MouseLeftButtonUp="Menu_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="6"/>
+            <Label x:Name="lab_datetime" Content="2019年01月10日 13：54：34   星期一" VerticalContentAlignment="Top" HorizontalContentAlignment="Right" Canvas.Top="10"  Width="263" FontSize="14" Foreground="#8e908f" Background="{x:Null}" Height="28" VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Right="5"  Margin="0,0,5,0"/>
+            <Image Tag="image_datas" x:Name="image_datas" Height="55" Width="55"  Source="/images/setting_datas_on.png"  VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="107" MouseLeftButtonUp="Menu_Click"/>
+            <Image Tag="image_zcm" x:Name="image_zcm" Height="55" Width="55"  Source="/images/setting_zcm.png"  VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="167" MouseLeftButtonUp="Menu_Click"/>
+            <Image Tag="image_tran" x:Name="image_tran" Height="55" Width="55"  Source="/images/setting_tran.png"  VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="227" MouseLeftButtonUp="Menu_Click"/>
+            <Image Tag="image_io_obd_jx" x:Name="image_io_obd_jx" Height="55" Width="55"  Source="/AICar;component/images/setting_io_obd_jx.png"  VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="287" MouseLeftButtonUp="Menu_Click"/>
+            <Image Tag="image_obd_use" Visibility="Collapsed" x:Name="image_obd_use" Height="55" Width="55"  Source="/AICar;component/images/setting_obd_use.png"  VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="433" MouseLeftButtonUp="Menu_Click"/>
+            <Image Tag="image_updata" x:Name="image_updata" Height="55" Width="55"  Source="/AICar;component/images/setting_update.png"  VerticalAlignment="Top" HorizontalAlignment="Right" Canvas.Left="347" MouseLeftButtonUp="Menu_Click"/>
+        </Canvas>
+        <Canvas Tag="canvas_datas" x:Name="canvas_datas" VerticalAlignment="Top" Margin="0,0,0,0" Visibility="Visible" >
+            <Label Content="---终端设备数据接入设置----------------------" FontSize="16" HorizontalAlignment="Left" Margin="25,84,0,0" VerticalAlignment="Top" Foreground="#8e908f"/>
+            <Label Content="数据串口号          ：" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#8e908f" Canvas.Left="49" Canvas.Top="136"/>
+            <ComboBox x:Name="dataserialnum" FontFamily="FZLTZHUNHK" FontSize="15" Foreground="#FFFFFFFF" Width="146" Height="30" BorderBrush="#FF48494c" VerticalContentAlignment="Center" Padding="25,0,0,0" IsEditable="False" Style="{DynamicResource ComboBoxStyle}" SelectedIndex="0" Canvas.Left="182" Canvas.Top="136">
+                <ComboBoxItem Content="COM1" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="COM2" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="COM3" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="COM4" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="COM5" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="COM6" Padding="35,0,0,0"/>
+            </ComboBox>
+
+            <CheckBox x:Name="isusentrip" Style="{StaticResource chkBullet}" IsChecked="False" Content="OFF" Tag="ON" Canvas.Left="172" Canvas.Top="258" Height="32" Width="109"/>
+            <Label Content="---网络差分设置----------------------" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#8e908f" Canvas.Left="25" Canvas.Top="204"/>
+            <Label Content="是否启用网络差分：" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#8e908f" Canvas.Left="49" Canvas.Top="258"/>
+            <Label Content="差分服务器域名   ：" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#8e908f" Canvas.Left="49" Canvas.Top="303"/>
+            <TextBox x:Name="textbox_ntrip_svr_name" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" FontSize="15"  Text="" VerticalAlignment="Top" Width="228" Style="{DynamicResource TextBoxStyle1}" VerticalContentAlignment="Center" BorderBrush="#FF434346" BorderThickness="1" Canvas.Left="182" Canvas.Top="302" Background="#FF333337" Foreground="#FFA8A8A8" GotFocus="Textbox_ntrip_svr_name_GotFocus"/>
+            <Label Content="差分终端编号      ：" FontSize="13" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#8e908f" Canvas.Left="50" Canvas.Top="353"/>
+            <TextBox x:Name="textbox_ntrip_moution" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" FontSize="15"  Text="" VerticalAlignment="Top" Width="228" Style="{DynamicResource TextBoxStyle1}" VerticalContentAlignment="Center" BorderBrush="#FF434346" BorderThickness="1" Canvas.Left="182" Canvas.Top="352" Background="#FF333337" Foreground="#FFA8A8A8" GotFocus="Textbox_ntrip_moution_GotFocus"/>
+            <Image Height="46" Width="153" Source="/images/btn_save.png" MouseLeftButtonUp="saveconfig_Click" Tag="saveconfig" Canvas.Left="257" Canvas.Top="429"/>
+
+        </Canvas>
+
+        <Canvas Tag="canvas_update" x:Name="canvas_update" VerticalAlignment="Top" Margin="0,0,0,0" Visibility="Collapsed" >
+            <Label Content="---升级终端设备固件----------------------" FontSize="16" HorizontalAlignment="Left" Margin="25,84,0,0" VerticalAlignment="Top" Foreground="#8e908f"/>
+            <Label Tag="lab_btn_selectfilepath" Content="" FontSize="13" Height="35" Width="118" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#000000" Canvas.Left="571" Canvas.Top="136" MouseLeftButtonUp="lab_btn_Click">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_button_selectfile.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <Label x:Name="lab_update_local" Content=""  HorizontalContentAlignment="Left"  Width="528" FontSize="14" Foreground="#FFFFFFFF" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="136">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <Label Tag="lab_btn_updatefile" Content="" FontSize="13" Height="35" Width="118" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#000000" Canvas.Left="570" Canvas.Top="185" MouseLeftButtonUp="lab_btn_Click">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_button_updatefile.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+
+
+        </Canvas>
+
+        <Canvas Tag="canvas_zcminfo" x:Name="canvas_zcminfo" VerticalAlignment="Top" Margin="0,0,0,0" Visibility="Collapsed" >
+            <Label Content="---授权终端设备----------------------" FontSize="16" HorizontalAlignment="Left" Margin="25,84,0,0" VerticalAlignment="Top" Foreground="#8e908f"/>
+            <Label x:Name="lab_zcm_sn" Content="设备编号："  HorizontalContentAlignment="Left" Canvas.Top="131"  Width="294" FontSize="15" Foreground="#6b6c6b" Height="38" Canvas.Left="25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="lab_zcm_zcm" Content="授权期至："  HorizontalContentAlignment="Left" Canvas.Top="188"  Width="263" FontSize="15" Foreground="#6b6c6b" Height="42" Canvas.Left="25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="lab_keyboard_zcm" Content=""  HorizontalContentAlignment="Center" Canvas.Top="84"  Width="450" FontSize="35" Foreground="#FF7AAC0E" Height="75" Canvas.Left="324" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <WrapPanel Height="320" Canvas.Top="169" Width="450" Canvas.Left="316">
+                <Image Height="65" Width="65" Source="/images/keyboard/1.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="1"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/2.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="2"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/3.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="3"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/4.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="4"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/5.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="5"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/6.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="6"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/7.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="7"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/8.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="8"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/9.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="9"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/0.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="0"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/a.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="A"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/b.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="B"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/c.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="C"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/d.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="D"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/e.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="E"/>
+                <Image Height="65" Width="65" Source="/images/keyboard/f.png" Margin="5" MouseLeftButtonUp="KeyBoard_Click" Tag="F"/>
+                <Image Height="60" Width="209" Source="/images/keyboard/backspace.png" Margin="10,25,5,5" MouseLeftButtonUp="KeyBoard_Click" Tag="back"/>
+                <Image Height="60" Width="209" Source="/images/keyboard/ok.png" Margin="5,25,5,5" MouseLeftButtonUp="KeyBoard_Click" Tag="OK"/>
+            </WrapPanel>
+        </Canvas>
+        <Canvas Tag="canvas_traninfo" x:Name="canvas_traninfo" VerticalAlignment="Top" Margin="0,0,0,0" Visibility="Collapsed" >
+            <Label Content="---配置终端差分数据传输模式----------------------" FontSize="16" HorizontalAlignment="Left" Margin="25,84,0,0" VerticalAlignment="Top" Foreground="#8e908f"/>
+
+            <Label Tag="lab_btn_getradio" Content=" 读取电台通道" Height="45" Canvas.Left="43" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="159" Width="173" MouseLeftButtonUp="lab_btn_Click">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_button.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+
+            <Label x:Name="lab_getradio" Content="" Height="45" Canvas.Left="243" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFA8A8A8" FontSize="17"  Canvas.Top="159" Width="221">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+
+
+            <ComboBox x:Name="radioSource" FontFamily="FZLTZHUNHK" FontSize="17" Foreground="#FFA8A8A8" Width="221" Height="45" BorderBrush="#FF48494c" VerticalContentAlignment="Center" Padding="35,0,0,0" IsEditable="False" Style="{DynamicResource ComboBoxStyle}" SelectedIndex="0" Canvas.Left="243" Canvas.Top="217">
+                <ComboBoxItem Content="通道 0" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="通道 1" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="通道 2" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="通道 3" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="通道 4" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="通道 5" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="通道 6" Padding="35,0,0,0"/>
+            </ComboBox>
+            <Label Tag="lab_btn_setradionum" Content=" 设置电台通道" Height="45" Canvas.Left="43" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="220" Width="173" MouseLeftButtonUp="lab_btn_Click" >
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_button.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <Label Tag="lab_btn_gettranmodel" Content=" 读取传输模式" Height="45" Canvas.Left="43" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="308" Width="173" MouseLeftButtonUp="lab_btn_Click">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_button_0.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <Label x:Name="lab_gettranmodel" Height="45" Canvas.Left="243" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFA8A8A8" FontSize="17"  Canvas.Top="308" Width="221">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+
+            <ComboBox x:Name="tranSource" FontFamily="FZLTZHUNHK" FontSize="15" Foreground="#FFA8A8A8" Width="221" Height="45" BorderBrush="#FF48494c" VerticalContentAlignment="Center" Padding="35,0,0,0" IsEditable="False" Style="{DynamicResource ComboBoxStyle}" SelectedIndex="0" Canvas.Left="243" Canvas.Top="377">
+                <ComboBoxItem Content="内置电台" Padding="35,0,0,0"/>
+                <ComboBoxItem Content="外置电台/网络" Padding="35,0,0,0"/>
+            </ComboBox>
+            <Label Tag="lab_btn_settrantype" Content=" 设置传输模式" Height="45" Canvas.Left="43" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="380" Width="173" MouseLeftButtonUp="lab_btn_Click">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_button_0.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+
+        </Canvas>
+        <Canvas Tag="canvas_io_obd_jx" x:Name="canvas_io_obd_jx" VerticalAlignment="Top" Margin="0,0,0,0" Visibility="Collapsed" >
+            <Label Content="---IO极性设置----------------------" FontSize="16" HorizontalAlignment="Left" Margin="25,84,0,0" VerticalAlignment="Top" Foreground="#8e908f"/>
+            <Label Content="手    刹："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="133"/>
+            <Label x:Name="lab_s_ss" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_ss" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="82" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="车    门："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="133"/>
+            <Label x:Name="lab_s_cm" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_cm" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="206" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="安全带："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="275" Canvas.Top="133"/>
+            <Label x:Name="lab_s_aqd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_aqd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="330" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="熄    火："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="133"/>
+            <Label x:Name="lab_s_xh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_xh" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="452" Canvas.Top="157" Height="29" Width="69"/>
+
+
+            <Label Content="点    火："  HorizontalContentAlignment="Center"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="133"/>
+            <Label x:Name="lab_s_dh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_dh" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="576" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="空    档："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="133"/>
+            <Label x:Name="lab_s_kd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_kd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="697" Canvas.Top="157" Height="29" Width="69"/>
+
+
+            <Label Content="IO指纹："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="201"/>
+            <Label x:Name="lab_s_iozw" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iozw" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="82" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="左转向："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="201"/>
+            <Label x:Name="lab_s_iozzx" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iozzx" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="206" Canvas.Top="225" Height="29" Width="69"/>
+
+            <Label  Content="右转向："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="274" Canvas.Top="201"/>
+            <Label x:Name="lab_s_ioyzx" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_ioyzx" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="330" Canvas.Top="225" Height="29" Width="69"/>
+
+            <Label Content="喇    叭："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="201"/>
+            <Label x:Name="lab_s_iolb" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iolb" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="452" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="雨    刷："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="201"/>
+            <Label x:Name="lab_s_ioys" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_ioys" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="576" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="远光灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="201"/>
+            <Label x:Name="lab_s_ioygd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_ioygd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="697" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="近光灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="271"/>
+            <Label x:Name="lab_s_iojgd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iojgd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="82" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="示廓灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="271"/>
+            <Label x:Name="lab_s_ioskd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_ioskd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="206" Canvas.Top="295" Height="29" Width="69"/>
+
+            <Label Content="雾    灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="274" Canvas.Top="271"/>
+            <Label x:Name="lab_s_iowd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iowd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="330" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="刹    车："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="271"/>
+            <Label x:Name="lab_s_ioscd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_ioscd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="452" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="副    刹："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="271"/>
+            <Label x:Name="lab_s_iofs"  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iofs" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="576" Canvas.Top="295" Height="29" Width="69"/>
+
+            <Label Content="倒后镜："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="271"/>
+            <Label x:Name="lab_s_iodhj" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iodhj" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="697" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="后视镜："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="344"/>
+            <Label x:Name="lab_s_iohsj" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iohsj" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="82" Canvas.Top="368" Height="29" Width="69"/>
+
+            <Label Content="座    位："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="344"/>
+            <Label x:Name="lab_s_iozwtz" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iozwtz" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="206" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕左前："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="277" Canvas.Top="344"/>
+            <Label x:Name="lab_s_iorczq" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iorczq" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="330" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕右前："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="344"/>
+            <Label x:Name="lab_s_iorcyq"   HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iorcyq" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="452" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕左后："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="344"/>
+            <Label x:Name="lab_s_iorczh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iorczh" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="576" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕右后："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="344"/>
+            <Label x:Name="lab_s_iorcyh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iorcyh" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="697" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="仪表盘："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="416"/>
+            <Label x:Name="lab_s_ioybp" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="416">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_ioybp" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="82" Canvas.Top="440" Height="29" Width="69"/>
+
+
+            <Label Content="倒车灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="416"/>
+            <Label x:Name="lab_s_iodcd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="416">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iodcd" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="206" Canvas.Top="440" Height="29" Width="69"/>
+
+
+            <Label Content="离    合："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="277" Canvas.Top="416"/>
+            <Label x:Name="lab_s_iolh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="416">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_s_iolh" Style="{StaticResource chkHorizontalAlignment}" IsChecked="True" Content="L" Tag="H" Canvas.Left="330" Canvas.Top="440" Height="29" Width="69"/>
+
+            <Label Tag="lab_btn_io_getjx" Content=" " Height="42" Canvas.Left="487" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="427" Width="124" MouseLeftButtonUp="lab_btn_Click" >
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/get_io_jx.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+
+            <Label Tag="lab_btn_io_setjx" Content=" " Height="42" Canvas.Left="642" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="427" Width="124" MouseLeftButtonUp="lab_btn_Click" >
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/set_io_jx.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+        </Canvas>
+
+        <Canvas Tag="canvas_obd_use" x:Name="canvas_obd_use" VerticalAlignment="Top" Margin="0,0,0,0" Visibility="Collapsed" >
+            <Label Content="-----OBD信号启用设置----------------------" FontSize="16" HorizontalAlignment="Left" Margin="25,84,0,0" VerticalAlignment="Top" Foreground="#8e908f"/>
+            <Label Content="手    刹："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="133"/>
+            <Label x:Name="lab_o_ss" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_ss" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="82" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="车    门："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="133"/>
+            <Label x:Name="lab_o_cm" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_cm" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="206" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="安全带："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="275" Canvas.Top="133"/>
+            <Label x:Name="lab_o_aqd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_aqd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="330" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="熄    火："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="133"/>
+            <Label x:Name="lab_o_xh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_xh" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="452" Canvas.Top="157" Height="29" Width="69"/>
+
+
+            <Label Content="点    火："  HorizontalContentAlignment="Center"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="133"/>
+            <Label x:Name="lab_o_dh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_dh" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="576" Canvas.Top="157" Height="29" Width="69"/>
+
+            <Label Content="空    档："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="133"/>
+            <Label x:Name="lab_o_kd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="133">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_kd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="697" Canvas.Top="157" Height="29" Width="69"/>
+
+
+            <Label Content="IO指纹："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="201"/>
+            <Label x:Name="lab_o_iozw" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iozw" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="82" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="左转向："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="201"/>
+            <Label x:Name="lab_o_iozzx" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iozzx" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="206" Canvas.Top="225" Height="29" Width="69"/>
+
+            <Label  Content="右转向："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="274" Canvas.Top="201"/>
+            <Label x:Name="lab_o_ioyzx" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_ioyzx" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="330" Canvas.Top="225" Height="29" Width="69"/>
+
+            <Label Content="喇    叭："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="201"/>
+            <Label x:Name="lab_o_iolb" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iolb" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="452" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="雨    刷："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="201"/>
+            <Label x:Name="lab_o_ioys" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_ioys" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="576" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="远光灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="201"/>
+            <Label x:Name="lab_o_ioygd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="201">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_ioygd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="697" Canvas.Top="225" Height="29" Width="69"/>
+
+
+            <Label Content="近光灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="271"/>
+            <Label x:Name="lab_o_iojgd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iojgd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="82" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="示廓灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="271"/>
+            <Label x:Name="lab_o_ioskd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_ioskd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="206" Canvas.Top="295" Height="29" Width="69"/>
+
+            <Label Content="雾    灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="274" Canvas.Top="271"/>
+            <Label x:Name="lab_o_iowd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iowd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="330" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="刹    车："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="271"/>
+            <Label x:Name="lab_o_ioscd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_ioscd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="452" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="副    刹："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="271"/>
+            <Label x:Name="lab_o_iofs"  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iofs" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="576" Canvas.Top="295" Height="29" Width="69"/>
+
+            <Label Content="倒后镜："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="271"/>
+            <Label x:Name="lab_o_iodhj" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="271">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iodhj" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="697" Canvas.Top="295" Height="29" Width="69"/>
+
+
+            <Label Content="后视镜："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="344"/>
+            <Label x:Name="lab_o_iohsj" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iohsj" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="82" Canvas.Top="368" Height="29" Width="69"/>
+
+            <Label Content="座    位："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="344"/>
+            <Label x:Name="lab_o_iozwtz" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iozwtz" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="206" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕左前："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="277" Canvas.Top="344"/>
+            <Label x:Name="lab_o_iorczq" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iorczq" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="330" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕右前："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="397" Canvas.Top="344"/>
+            <Label x:Name="lab_o_iorcyq"   HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="457" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iorcyq" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="452" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕左后："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="521" Canvas.Top="344"/>
+            <Label x:Name="lab_o_iorczh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="581" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iorczh" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="576" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="绕右后："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="344"/>
+            <Label x:Name="lab_o_iorcyh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="702" Canvas.Top="344">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iorcyh" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="697" Canvas.Top="368" Height="29" Width="69"/>
+
+
+            <Label Content="仪表盘："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="416"/>
+            <Label x:Name="lab_o_ioybp" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="87" Canvas.Top="416">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_ioybp" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="82" Canvas.Top="440" Height="29" Width="69"/>
+
+
+            <Label Content="倒车灯："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="151" Canvas.Top="416"/>
+            <Label x:Name="lab_o_iodcd" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"  Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="211" Canvas.Top="416">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iodcd" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="206" Canvas.Top="440" Height="29" Width="69"/>
+
+
+            <Label Content="离    合："  HorizontalContentAlignment="Left"  Width="55" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="277" Canvas.Top="416"/>
+            <Label x:Name="lab_o_iolh" Content=""  HorizontalContentAlignment="Center"  Width="60" FontSize="12" Foreground="#FF359542"   Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="335" Canvas.Top="416">
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/lab_textbox.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+            <CheckBox x:Name="chb_o_iolh" Style="{StaticResource chkOBD}" IsChecked="True" Content="屏蔽" Tag="启用" Canvas.Left="330" Canvas.Top="440" Height="29" Width="69"/>
+
+            <Label Tag="lab_btn_obd_getuse" Content=" " Height="42" Canvas.Left="487" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="427" Width="124" MouseLeftButtonUp="lab_btn_Click" >
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/get_obd_use.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+
+            <Label Tag="lab_btn_obd_setuse" Content=" " Height="42" Canvas.Left="642" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="#ffffff" FontSize="15"  Canvas.Top="427" Width="124" MouseLeftButtonUp="lab_btn_Click" >
+                <Label.Background>
+                    <ImageBrush ImageSource="/AICar;component/images/setting/set_obd_use.png" Stretch="Fill" Viewport="0,0,1,1"/>
+                </Label.Background>
+            </Label>
+        </Canvas>
+
+        <StackPanel Height="46" Margin="0,0,0,0" Orientation="Horizontal" VerticalAlignment="Bottom" Background="#FF292A2E">
+            <Image Width="43" Source="/images/communication.png" Margin="20,8,0,7" />
+            <Label x:Name="system_messageinfo" FontSize="16" Content="" Foreground="#e6e6e6" Margin="20,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        </StackPanel>
+    </Grid>
+</local:BasePage>

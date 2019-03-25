@@ -1,0 +1,135 @@
+﻿<local:BasePage x:Class="AiCar.Pages.Page_Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AiCar.Pages"
+      mc:Ignorable="d"
+      Title="Page_Home" Loaded="BasePage_Loaded" Height="621.983" Width="886.638">
+
+    <Grid Background="#FF292A2E" Margin="0">
+        <Canvas Margin="2,0,0,0" Width="224" HorizontalAlignment="Left">
+            <Label Content="2019年01月06日" HorizontalContentAlignment="Center" Canvas.Top="7" x:Name="sys_date" Width="224" FontSize="17" Foreground="#FFBFC3C2" Background="{x:Null}"/>
+            <Label Content="18:24:22.200" HorizontalContentAlignment="Center" Canvas.Top="44" x:Name="sys_date_time" Width="224" FontSize="18" Foreground="#FFB0B6B4" Background="{x:Null}" Height="31"/>
+            <Label Content="定位状态：" x:Name="sys_deviceinfo_gpsstatus" HorizontalContentAlignment="Left" Canvas.Top="192"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="30" Canvas.Left="3"/>
+            <Label Content="卫星数量：" x:Name="sys_deviceinfo_gpsstarcount" HorizontalContentAlignment="Left" Canvas.Top="164"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+            <Label Content="设备编号：" x:Name="sys_deviceinfo_sn" HorizontalContentAlignment="Left" Canvas.Top="108"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+            <Label Content="授权期至：" x:Name="sys_deviceinfo_limidate" HorizontalContentAlignment="Left" Canvas.Top="136"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+            <Label Content="网络差分：" x:Name="sys_deviceinfo_rtcm3" HorizontalContentAlignment="Left" Canvas.Top="248"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+
+            <Label Content="设备编号：" x:Name="sys_deviceinfo_basesn" HorizontalContentAlignment="Left" Canvas.Top="318"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+            <Label Content="授权期至：" x:Name="sys_deviceinfo_base_limidate" HorizontalContentAlignment="Left" Canvas.Top="346"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+            <Label Content="---车载终端信息----------------------" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Canvas.Top="80"  Width="211" FontSize="12" Foreground="#8e908f" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+            <Label Content="---差分终端信息----------------------" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Canvas.Top="290"  Width="211" FontSize="12" Foreground="#8e908f" Background="{x:Null}" Height="28"/>
+            <Label Content="基站距离：" x:Name="sys_deviceinfo_basejuli" HorizontalContentAlignment="Left" Canvas.Top="220"  Width="211" FontSize="12" Foreground="#6b6c6b" Background="{x:Null}" Height="28" Canvas.Left="3"/>
+
+            <!--GroupBox Header="车载终端信息" Height="167" Canvas.Top="89" Width="220" Foreground="#FF7B7B7B"  Canvas.Left="1" BorderBrush="#FF3B3D40"/>
+            <GroupBox Header="差分终端信息" Height="92" Canvas.Top="264" Width="220" Foreground="#FF7B7B7B" Canvas.Left="1" BorderBrush="#FF3B3D40"/-->
+
+        </Canvas>
+        <Label x:Name="version" Content="1.10.111111111" FontSize="13" HorizontalAlignment="Left" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" Margin="0" VerticalAlignment="Bottom" RenderTransformOrigin="-0.366,1.455" Width="219" Foreground="#737373" BorderThickness="0,0,0,0"/>
+
+        <StackPanel Height="46" Margin="224,0,0,0" Orientation="Horizontal" VerticalAlignment="Top" Background="#FF292A2E">
+            <Image Width="43" Source="/images/communication.png" Margin="0,8,0,7"/>
+            <Label x:Name="system_messageinfo" FontSize="16" Content="" Foreground="#e6e6e6" Margin="20,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        </StackPanel>
+
+        <StackPanel x:Name="stackpanel_menu_1"  Margin="224,50,0,0" Background="#FF2C2E32">
+            <StackPanel x:Name="stackpanel_menu_1_1" Orientation="Horizontal" Margin="0" VerticalAlignment="Top">
+
+                <Label Tag="menu_deviceinfo"  x:Name="menu_deviceinfo" Content="主机信息" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,0,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/deviceinfo.png" Stretch="UniformToFill"/>
+                    </Label.Background>
+                </Label>
+
+                <Label Tag="menu_setting"  x:Name="menu_setting" Content="配置参数" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,0,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/setting.png" Stretch="UniformToFill"/>
+                    </Label.Background>
+                </Label>
+
+                <Label Tag="menu_exit"  x:Name="menu_exit" Content="退出系统"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,0,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/exit.png" Stretch="UniformToFill"/>
+                    </Label.Background>
+                </Label>
+
+
+
+
+
+
+
+
+                <!--Button x:Name="menu_close" Content="退出" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="34" Click="Button_Click" Height="45" Width="143" Margin="5,5,5,0"/-->
+
+            </StackPanel>
+            <StackPanel x:Name="stackpanel_menu_1_2" Orientation="Horizontal" Margin="0" VerticalAlignment="Top">
+
+                <Label Tag="menu_km2"  x:Name="menu_km2" Content="科目二" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,0,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/km2.png" Stretch="UniformToFill"/>
+                    </Label.Background>
+                </Label>
+
+                <Label Tag="menu_collectmap_km2"  x:Name="menu_collectmap_km2" Content="科目二采集地图" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,5,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/Collectmap_km2.png" Stretch="Fill"/>
+                    </Label.Background>
+                </Label>
+
+                <Label Visibility="Collapsed" Tag="menu_km3_1"  x:Name="menu_km3_1" Content="科目三" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,0,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click" >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/km3.png" Stretch="UniformToFill"/>
+                    </Label.Background>
+                </Label>
+
+                <!--
+                <Label Tag="menu_km3"  x:Name="menu_km3" Content="科目三" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,5,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click" >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/km3.png"/>
+                    </Label.Background>
+                </Label>
+                <Label Tag="menu_exit"  x:Name="menu_exit" Content="退出系统"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,5,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/exit.png"/>
+                    </Label.Background>
+                </Label>
+
+                Button x:Name="menu_close" Content="退出" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="34" Click="Button_Click" Height="45" Width="143" Margin="5,5,5,0"/-->
+
+            </StackPanel>
+            <StackPanel x:Name="stackpanel_menu_1_3" Orientation="Horizontal" Margin="0" VerticalAlignment="Top">
+
+
+                <Label Tag="menu_km3"  x:Name="menu_km3" Content="科目三" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,0,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click" >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/km3.png" Stretch="UniformToFill"/>
+                    </Label.Background>
+                </Label>
+
+                <Label Tag="menu_analogsignal"  x:Name="menu_analogsignal" Content="模拟灯光训练" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,0,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"   >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/analogsignal.png" Stretch="UniformToFill"/>
+                    </Label.Background>
+                </Label>
+                
+                <Label Tag="menu_collectmap_km3"  x:Name="menu_collectmap_km3" Content="科目三采集地图" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="15" Margin="5,5,5,0" Foreground="#FFF5F2F2" Block.TextAlignment="Left" MouseLeftButtonUp="Menu_Click"  >
+                    <Label.Background>
+                        <ImageBrush ImageSource="/images/Collectmap.png" Stretch="Fill"/>
+                    </Label.Background>
+                </Label>
+            </StackPanel>
+            <StackPanel x:Name="stackpanel_menu_1_4" Orientation="Horizontal" Margin="0" VerticalAlignment="Top">
+
+            </StackPanel>
+        </StackPanel>
+
+
+
+
+
+        <local:Page_Home_Menu_Map x:Name="_loading"  Visibility="Collapsed" Width="Auto" Height="Auto" Margin="0"/>
+            </Grid>
+</local:BasePage>
