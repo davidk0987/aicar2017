@@ -15,7 +15,7 @@ namespace AiCar
         [DllImport("ByteBuffer.dll", CallingConvention = CallingConvention.Cdecl)]
         public extern static void DeletePtr(IntPtr _point);
         [DllImport("ByteBuffer.dll", CallingConvention = CallingConvention.Cdecl)]
-        public extern static int ConvSignal(IntPtr _point, byte[] data, int len, byte[] data_0101, ref int len_0101, byte[] data_0806, ref int len_0806);
+        public extern static int ConvSignal(IntPtr _point, byte[] data, int len, byte[] data_o, ref int len_o, byte[] data_f, ref int len_f);
         [DllImport("ByteBuffer.dll", CallingConvention = CallingConvention.Cdecl)]
         public extern static bool ReadConfig(IntPtr _point, byte[] strcfgpath);
 
@@ -63,11 +63,11 @@ namespace AiCar
             }
             return false;
         }
-        public int ConvSignal_Int(byte[] data, byte[] data_0101, ref int len_0101, byte[] data_0806, ref int len_0806)
+        public int ConvSignal_Int(byte[] data, byte[] data_o, ref int len_o, byte[] data_f, ref int len_f)
         {
             if (_iPtrPoint != IntPtr.Zero)
             {
-                return ConvSignal(_iPtrPoint, data, data.Length,  data_0101, ref len_0101,  data_0806, ref len_0806);
+                return ConvSignal(_iPtrPoint, data, data.Length,  data_o, ref len_o,  data_f, ref len_f);
             }
 
             return -100;
