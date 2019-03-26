@@ -29,6 +29,7 @@ namespace AiCar
         {
             try
             {
+                
                 //int iClientMaxCount = 30000; //最大客户端数量
                 s_Server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 s_Server.Bind(new IPEndPoint(IPAddress.Any, _iPort));
