@@ -21,9 +21,9 @@ namespace AiCar
 
 
         private SerialPort     io_serial = new SerialPort();
-        private IOCP_Svr    net_svr_0806 = new IOCP_Svr();  //8110
+        private IOCP_Svr    net_svr_0006 = new IOCP_Svr();  //8110
         private IOCP_Svr    net_svr_ksxt = new IOCP_Svr();  //8111
-        private TcpClientBusiness net_cli_0806 = new TcpClientBusiness();  //127.0.0.1   8002
+        private TcpClientBusiness net_cli_0006 = new TcpClientBusiness();  //127.0.0.1   8002
         
         private string str_com_num = "";
         ByteBuffer pBuffer        = new ByteBuffer();
@@ -47,15 +47,9 @@ namespace AiCar
             _timer.Tick += new EventHandler(Timer_Tick);
             _timer.Start();
 
-            net_svr_0806.ListenClient(8110, 3);
+            net_svr_0006.ListenClient(8110, 3);
             net_svr_ksxt.ListenClient(8111, 3);
 
-            //net_svr_0806.TcpServer_OnTime(86000);
-            //net_svr_ksxt.TcpServer_OnTime(86000);
-            SetGpsCoord(43.87246755, 81.35710057);
-            SetGpsCoord(43.87198762, 81.35710125);
-            SetGpsCoord(43.87267511, 81.35182355);
-            SetGpsCoord(43.87187523, 81.35181095);
         }
 
         ~Serial()
@@ -280,12 +274,6 @@ namespace AiCar
                     return;
                 }
 
-                byte[] date_0101 = new byte[1024];
-                byte[] date_0806 = new byte[2048];
-
-                int len_0101 = 0;
-                int len_0806 = 0;
-
                 
                 try
                 {
@@ -318,13 +306,7 @@ namespace AiCar
                     }
                     
 
-                    if (pBuffer.ConvSignal_Int(System.Text.ASCIIEncoding.Default.GetBytes(strData + "\r\n"), date_0101, ref len_0101, date_0806, ref len_0806) == 0)
-                    {
-                        net_svr_0806.SendData2AllClient(date_0101, len_0101);
-                        net_svr_0806.SendData2AllClient(date_0806, len_0806);
-                        net_cli_0806.SendData(date_0101, len_0101);
-                        net_cli_0806.SendData(date_0806, len_0806);
-                    }
+
 
                     ShowMessage(strData, System_Message_Info.ksxt);
 
@@ -562,125 +544,6 @@ namespace AiCar
                         iCMD = 0;
                         iIndex = 0;
                         icmd = 0;
-                    }
-                    if (icmd == 1)
-                    {
-                        #region 设置注册码
-                        byte[] b_data = new byte[iLen];// b_buff.readBytes(iLen);
-                        //string strT = "";
-                        for (int i = 0; i < iLen; i++)
-                        {
-                            b_data[i] = (byte)Helper.rx_invork(pBuffer.Buff_GetAt(iIndex));
-                            //strT += string.Format("{0:X}", b_data[i]);
-                            iIndex++;
-                        }
-
-                        if (b_data[0] == 1)
-                        {
-                            ShowMessage("车载终端激活成功", System_Message_Info.notification);
-                            //AddContent("授权码设置成功");
-                        }
-                        else
-                        {
-                            ShowMessage("车载终端激活失败，请核对授权码是否有误", System_Message_Info.notification);
-                            //AddContent("授权码设置失败，请检查输入是否有误");
-                        }
-
-                        pBuffer.Buff_Delete(iIndex);
-                        iCMD = 0;
-                        iIndex = 0;//设置注册码成功返回消息
-
-
-                        #endregion
-                    }
-                    else if (icmd == 2)
-                    {
-                        #region 读取电台通道
-                        //byte[] b_data = new byte[5];// b_buff.readBytes(5);
-                        //for (int i = 0; i < 5; i++)
-                        //{
-                        //    b_data[i] = (byte)Helper.rx_invork(pBuffer.Buff_GetAt(iIndex));
-                        //    iIndex++;
-                        //}
-                        byte tth = (byte)Helper.rx_invork(pBuffer.Buff_GetAt(iIndex));// b_data[4];
-                        iIndex++;
-
-
-                        ShowMessage(tth.ToString(), System_Message_Info.getradionum);
-                        ShowMessage("读取电台通道成功，当前电台通道号：" + tth.ToString(), System_Message_Info.notification);
-
-                        pBuffer.Buff_Delete(iIndex);
-                        iCMD = 0;
-                        iIndex = 0;//
-                        #endregion
-                    }
-                    else if (icmd == 4)
-                    {
-                        pBuffer.Buff_Delete(iIndex);
-                        iCMD = 0;
-                        iIndex = 0;//设置注册码成功返回消息
-                        ShowMessage("更改电台通道号成功，开始重启主机，请稍候....", System_Message_Info.notification);
-                        //resetzj();
-                    }
-                    else if (icmd == 9)
-                    {
-                        byte[] b_data = new byte[iLen];// b_buff.readBytes(5);
-                        for (int i = 0; i < iLen; i++)
-                        {
-                            b_data[i] = (byte)Helper.rx_invork(pBuffer.Buff_GetAt(iIndex));
-                            iIndex++;
-                        }
-                        string strd = "";
-                        
-                        for (int i=iLen-1;i>=0;i--)
-                        {
-                            strd += Convert.ToString(b_data[i], 2).PadLeft(8, '0');
-                        }
-
-                        pBuffer.Buff_Delete(iIndex);
-                        iCMD = 0;
-                        iIndex = 0;//设置注册码成功返回消息
-                        ShowMessage("获取IO极性成功：" + strd + "--" + iLen, System_Message_Info.notification);
-                        string strd2 = Helper.RepairZero(strd, 32);
-                        ShowMessage(strd2, System_Message_Info.getiojx);
-                        //resetzj();
-                    }
-                    else if (icmd == 10)
-                    {
-                        pBuffer.Buff_Delete(iIndex);
-                        iCMD = 0;
-                        iIndex = 0;//设置IO极性成功
-                        ShowMessage("设置IO极性成功");
-                    }
-                    else if (icmd == 14)
-                    {
-                        #region 读取差分传输模式
-                        //byte[] b_data = new byte[5];// b_buff.readBytes(5);
-                        //for (int i = 0; i < 5; i++)
-                        //{
-                        //    b_data[i] = (byte)Helper.rx_invork(pBuffer.Buff_GetAt(iIndex));
-                        //    iIndex++;
-                        //}
-                        byte tth = (byte)Helper.rx_invork(pBuffer.Buff_GetAt(iIndex));// b_data[4];
-                        iIndex++;
-
-
-
-                        ShowMessage(tth.ToString(), System_Message_Info.gettran);
-                        ShowMessage("读取差分传输模式，当前差分传输模式：" + (tth.ToString() == "0" ? "内置电台模式" : "网络模式/外置电台模式"), System_Message_Info.notification);
-
-                        pBuffer.Buff_Delete(iIndex);
-                        iCMD = 0;
-                        iIndex = 0;//
-                        #endregion
-                    }
-                    else if (icmd == 15)
-                    {
-                        pBuffer.Buff_Delete(iIndex);
-                        iCMD = 0;
-                        iIndex = 0;//设置注册码成功返回消息
-                        ShowMessage("设置差分传输模式成功", System_Message_Info.notification);
-                        //resetzj();
                     }
                 }
 
